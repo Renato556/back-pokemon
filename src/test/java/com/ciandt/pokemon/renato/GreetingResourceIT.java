@@ -1,4 +1,4 @@
-package org.acme;
+package com.ciandt.pokemon.renato;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 
