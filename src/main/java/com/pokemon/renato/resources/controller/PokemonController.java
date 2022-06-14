@@ -12,7 +12,7 @@ public class PokemonController {
         var client = HttpClient.newHttpClient();
 
         var request = HttpRequest.newBuilder(
-                URI.create(URL + "?limit=100000&offset=0"))
+                URI.create(URL + "?limit=898&offset=0"))
                 .build();
 
         var response = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
