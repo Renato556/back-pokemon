@@ -7,24 +7,24 @@ public class PokemonResponse {
     @JsonbProperty("abilities")
     private List<Abilities> abilities;
     @JsonbProperty("base_experience")
-    private Number base_experience;
+    private Number baseExperience;
     @JsonbProperty("height")
-    private Number height;
+    private Float height;
     @JsonbProperty("name")
     private String name;
-    @JsonbProperty("sprites.front_default")
-    private String image;
+    @JsonbProperty("sprites")
+    private Sprites sprites;
     @JsonbProperty("types")
     private List<Types> types;
     @JsonbProperty("weight")
-    private Number weight;
+    private Float weight;
 
-    public PokemonResponse(List<Abilities> abilities, Number base_experience, Number height, String name, String image, List<Types> types, Number weight) {
+    public PokemonResponse(List<Abilities> abilities, Number baseExperience, Float height, String name, Sprites sprites, List<Types> types, Float weight) {
         this.abilities = abilities;
-        this.base_experience = base_experience;
+        this.baseExperience = baseExperience;
         this.height = height;
         this.name = name;
-        this.image = image;
+        this.sprites = sprites;
         this.types = types;
         this.weight = weight;
     }
@@ -39,19 +39,19 @@ public class PokemonResponse {
         this.abilities = abilities;
     }
 
-    public Number getBase_experience() {
-        return base_experience;
+    public Number getBaseExperience() {
+        return baseExperience;
     }
 
-    public void setBase_experience(Number base_experience) {
-        this.base_experience = base_experience;
+    public void setBaseExperience(Number baseExperience) {
+        this.baseExperience = baseExperience;
     }
 
-    public Number getHeight() {
+    public Float getHeight() {
         return height;
     }
 
-    public void setHeight(Number height) {
+    public void setHeight(Float height) {
         this.height = height;
     }
 
@@ -63,12 +63,12 @@ public class PokemonResponse {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public Sprites getSprites() {
+        return sprites;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setSprites(Sprites sprites) {
+        this.sprites = sprites;
     }
 
     public List<Types> getTypes() {
@@ -79,12 +79,31 @@ public class PokemonResponse {
         this.types = types;
     }
 
-    public Number getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Number weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
+    }
+
+    public static class Sprites {
+        @JsonbProperty("front_default")
+        private String image;
+
+        public Sprites(String image) {
+            this.image = image;
+        }
+
+        public Sprites() {}
+
+        public String getImage() {
+            return image;
+        }
+
+        public void setImage(String image) {
+            this.image = image;
+        }
     }
 
     public static class Abilities {
