@@ -33,10 +33,6 @@
       <artifactId>quarkus-arc</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-reactive</artifactId>
-    </dependency>
-    <dependency>
       <groupId>br.com.six2six</groupId>
       <artifactId>fixture-factory</artifactId>
       <version>3.1.0</version>
@@ -61,6 +57,14 @@
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jsonb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client-jackson</artifactId>
     </dependency>
   </dependencies>
   <build>
