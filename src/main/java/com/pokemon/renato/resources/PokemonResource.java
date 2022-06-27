@@ -1,4 +1,4 @@
-package com.pokemon.renato.infrastructure.pokeapi.resources;
+package com.pokemon.renato.resources;
 
 import com.pokemon.renato.domain.entities.Pokemon;
 import com.pokemon.renato.domain.entities.PokemonList;

@@ -20,15 +20,15 @@ public class PokemonCommand {
         this.pkmGateway = pkmGateway;
     }
 
-    public String treatData(Float data, String extension) {
+    public String formatData(Float data, String extension) {
         return (data / 10) + " " + extension;
     }
 
-    public String treatData(Number data, String extension) {
+    public String formatData(Number data, String extension) {
         return  data + " " + extension;
     }
 
-    public String formatName(String name) {
+    public String formatData(String name) {
         return name.replaceAll("-", " ");
     }
 
@@ -37,7 +37,7 @@ public class PokemonCommand {
         final String IMAGE_URL =  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png";
         List<PokemonListResponse.PokemonList> pokemonList = pokemonListResponse.getResults();
         for (int i = 0; i < pokemonListResponse.getResults().size(); i++) {
-            String name = formatName(pokemonList.get(i).getName());
+            String name = formatData(pokemonList.get(i).getName());
             String id = pokemonList.get(i).getUrl().split("/")[6];
             String image = IMAGE_URL.replace("0", id);
             newPokemonList.add(new PokemonList(id, name, image));
@@ -46,12 +46,12 @@ public class PokemonCommand {
     }
 
     public Pokemon createSinglePokemon(PokemonResponse pokemonResponse) {
-        String weight = treatData(pokemonResponse.getWeight(), "kg");
-        String height = treatData(pokemonResponse.getHeight(), "m");
+        String weight = formatData(pokemonResponse.getWeight(), "kg");
+        String height = formatData(pokemonResponse.getHeight(), "m");
         return new Pokemon(
-                formatName(pokemonResponse.getName()),
+                formatData(pokemonResponse.getName()),
                 pokemonResponse.getSprites().getImage(),
-                treatData(pokemonResponse.getBaseExperience(), "XP"),
+                formatData(pokemonResponse.getBaseExperience(), "XP"),
                 weight,
                 height,
                 pokemonResponse.getTypes(),
