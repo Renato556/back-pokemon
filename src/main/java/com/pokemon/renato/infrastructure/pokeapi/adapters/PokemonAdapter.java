@@ -2,7 +2,7 @@ package com.pokemon.renato.infrastructure.pokeapi.adapters;
 
 import com.pokemon.renato.infrastructure.pokeapi.domain.PokemonListResponse;
 import com.pokemon.renato.infrastructure.pokeapi.domain.PokemonResponse;
-import com.pokemon.renato.infrastructure.pokeapi.gateways.PkmGateway;
+import com.pokemon.renato.infrastructure.pokeapi.gateways.PokemonGatewayInterface;
 import com.pokemon.renato.infrastructure.pokeapi.gateways.PokemonGateway;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class PokemonAdapter implements PkmGateway {
+public class PokemonAdapter implements PokemonGatewayInterface {
     private final PokemonGateway pokemonGateway;
 
     @Inject

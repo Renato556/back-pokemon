@@ -1,25 +1,16 @@
-package com.pokemon.renato.application.commands;
+package com.pokemon.renato.application.mapper;
 
 import com.pokemon.renato.domain.entities.Pokemon;
 import com.pokemon.renato.domain.entities.PokemonList;
 import com.pokemon.renato.infrastructure.pokeapi.domain.PokemonListResponse;
 import com.pokemon.renato.infrastructure.pokeapi.domain.PokemonResponse;
-import com.pokemon.renato.infrastructure.pokeapi.gateways.PkmGateway;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
-public class PokemonCommand {
-    private final PkmGateway pkmGateway;
-
-    @Inject
-    public PokemonCommand(PkmGateway pkmGateway) {
-        this.pkmGateway = pkmGateway;
-    }
-
+public class PokemonMapper {
     public String formatData(Float data, String extension) {
         return (data / 10) + " " + extension;
     }
@@ -45,7 +36,7 @@ public class PokemonCommand {
         return newPokemonList;
     }
 
-    public Pokemon createSinglePokemon(PokemonResponse pokemonResponse) {
+    public Pokemon createOnePokemon(PokemonResponse pokemonResponse) {
         String weight = formatData(pokemonResponse.getWeight(), "kg");
         String height = formatData(pokemonResponse.getHeight(), "m");
         return new Pokemon(
@@ -58,14 +49,4 @@ public class PokemonCommand {
                 pokemonResponse.getAbilities()
         );
     }
-
-    public PokemonListResponse getAllPokemon() {
-        final String POKEMON_LIMIT = "898";
-        return pkmGateway.getAllPokemon(POKEMON_LIMIT);
-    }
-
-    public PokemonResponse getOnePokemonByIdOrByName(String nameOrId) {
-        return pkmGateway.getSinglePokemon(nameOrId);
-    }
-
 }
