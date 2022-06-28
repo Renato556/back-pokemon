@@ -5,34 +5,36 @@ import java.util.List;
 
 public class PokemonListResponse {
     @JsonbProperty("results")
-    private List<PokemonList> results;
+    private List<PokemonData> results;
 
-    public PokemonListResponse(List<PokemonList> results) {
+    public PokemonListResponse(List<PokemonData> results) {
         this.results = results;
     }
 
-    public PokemonListResponse() {}
+    public PokemonListResponse() {
+    }
 
-    public List<PokemonList> getResults() {
+    public List<PokemonData> getResults() {
         return results;
     }
 
-    public void setResults(List<PokemonList> results) {
+    public void setResults(List<PokemonData> results) {
         this.results = results;
     }
 
-    public static class PokemonList {
+    public static class PokemonData {
         @JsonbProperty("name")
         private String name;
         @JsonbProperty("url")
         private String url;
 
-        public PokemonList(String name, String url) {
+        public PokemonData(String name, String url) {
             this.name = name;
             this.url = url;
         }
 
-        public PokemonList() {}
+        public PokemonData() {
+        }
 
         public String getName() {
             return name;

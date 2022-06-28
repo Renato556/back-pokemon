@@ -16,7 +16,7 @@ public class PokemonMapper {
     }
 
     public String formatData(Number data, String extension) {
-        return  data + " " + extension;
+        return data + " " + extension;
     }
 
     public String formatData(String name) {
@@ -25,11 +25,11 @@ public class PokemonMapper {
 
     public List<PokemonList> createPokemonList(PokemonListResponse pokemonListResponse) {
         List<PokemonList> newPokemonList = new ArrayList<>();
-        final String IMAGE_URL =  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png";
-        List<PokemonListResponse.PokemonList> pokemonList = pokemonListResponse.getResults();
+        final String IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png";
+        List<PokemonListResponse.PokemonData> pokemonData = pokemonListResponse.getResults();
         for (int i = 0; i < pokemonListResponse.getResults().size(); i++) {
-            String name = formatData(pokemonList.get(i).getName());
-            String id = pokemonList.get(i).getUrl().split("/")[6];
+            String name = this.formatData(pokemonData.get(i).getName());
+            String id = pokemonData.get(i).getUrl().split("/")[6];
             String image = IMAGE_URL.replace("0", id);
             newPokemonList.add(new PokemonList(id, name, image));
         }
@@ -37,14 +37,14 @@ public class PokemonMapper {
     }
 
     public Pokemon createOnePokemon(PokemonResponse pokemonResponse) {
-        String weight = formatData(pokemonResponse.getWeight(), "kg");
-        String height = formatData(pokemonResponse.getHeight(), "m");
+        String weight = this.formatData(pokemonResponse.getWeight(), "kg");
+        String height = this.formatData(pokemonResponse.getHeight(), "m");
         return new Pokemon(
-                formatData(pokemonResponse.getName()),
+                this.formatData(pokemonResponse.getName()),
                 pokemonResponse.getSprites().getImage(),
-                formatData(pokemonResponse.getBaseExperience(), "XP"),
-                weight,
+                this.formatData(pokemonResponse.getBaseExperience(), "XP"),
                 height,
+                weight,
                 pokemonResponse.getTypes(),
                 pokemonResponse.getAbilities()
         );

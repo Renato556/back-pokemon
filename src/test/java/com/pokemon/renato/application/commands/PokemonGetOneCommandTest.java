@@ -28,7 +28,7 @@ class PokemonGetOneCommandTest {
 
     @BeforeEach
     public void setup() {
-         pokemonGetOneCommand = new PokemonGetOneCommand(pokemonGatewayInterface, pokemonMapper);
+        pokemonGetOneCommand = new PokemonGetOneCommand(pokemonGatewayInterface, pokemonMapper);
     }
 
     @Nested

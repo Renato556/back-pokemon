@@ -13,7 +13,8 @@ public class Pokemon {
     private List<PokemonResponse.Types> types;
     private List<PokemonResponse.Abilities> abilities;
 
-    public Pokemon () {}
+    public Pokemon() {
+    }
 
     public Pokemon(String name, String image, String baseExperience, String height, String weight, List<PokemonResponse.Types> types, List<PokemonResponse.Abilities> abilities) {
         this.name = name;

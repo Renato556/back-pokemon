@@ -29,7 +29,8 @@ public class PokemonResponse {
         this.weight = weight;
     }
 
-    public PokemonResponse() {}
+    public PokemonResponse() {
+    }
 
     public List<Abilities> getAbilities() {
         return abilities;
@@ -95,7 +96,8 @@ public class PokemonResponse {
             this.image = image;
         }
 
-        public Sprites() {}
+        public Sprites() {
+        }
 
         public String getImage() {
             return image;
@@ -114,7 +116,8 @@ public class PokemonResponse {
             this.name = name;
         }
 
-        public Abilities() {}
+        public Abilities() {
+        }
 
         public Ability getName() {
             return name;
@@ -133,7 +136,8 @@ public class PokemonResponse {
             this.name = name;
         }
 
-        public Ability() {}
+        public Ability() {
+        }
 
         public String getName() {
             return name;
@@ -152,7 +156,8 @@ public class PokemonResponse {
             this.name = name;
         }
 
-        public Types() {}
+        public Types() {
+        }
 
         public Type getName() {
             return name;
@@ -171,7 +176,8 @@ public class PokemonResponse {
             this.name = name;
         }
 
-        public Type() {}
+        public Type() {
+        }
 
         public String getName() {
             return name;
