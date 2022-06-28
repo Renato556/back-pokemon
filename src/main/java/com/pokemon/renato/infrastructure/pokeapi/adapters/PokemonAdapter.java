@@ -24,7 +24,7 @@ public class PokemonAdapter implements PokemonGatewayInterface {
     }
 
     @Override
-    public PokemonResponse getSinglePokemon(String nameOrId) {
-        return pokemonGateway.getSinglePokemon(nameOrId);
+    public PokemonResponse getOnePokemon(String nameOrId) {
+        return pokemonGateway.getOnePokemon(nameOrId);
     }
 }

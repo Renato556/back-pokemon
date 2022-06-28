@@ -19,5 +19,5 @@ public interface PokemonGateway {
     @GET
     @Path("/{nameOrId}")
     @Produces(MediaType.APPLICATION_JSON)
-    PokemonResponse getSinglePokemon(@PathParam("nameOrId") String nameOrId);
+    PokemonResponse getOnePokemon(@PathParam("nameOrId") String nameOrId);
 }

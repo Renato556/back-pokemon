@@ -19,6 +19,6 @@ public class PokemonGetOneCommand {
     }
 
     public Pokemon execute(String nameOrId) {
-        return pokemonMapper.createOnePokemon(pokemonGatewayInterface.getSinglePokemon(nameOrId));
+        return pokemonMapper.createOnePokemon(pokemonGatewayInterface.getOnePokemon(nameOrId));
     }
 }

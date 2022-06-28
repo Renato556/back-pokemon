@@ -12,6 +12,7 @@ import java.util.List;
 public class PokemonGetAllCommand {
     private final PokemonGatewayInterface pokemonGatewayInterface;
     private final PokemonMapper pokemonMapper;
+    private static final String POKEMON_LIMIT = "898";
 
     @Inject
     public PokemonGetAllCommand(PokemonGatewayInterface pokemonGatewayInterface, PokemonMapper pokemonMapper) {
@@ -20,7 +21,6 @@ public class PokemonGetAllCommand {
     }
 
     public List<PokemonList> execute() {
-        final String POKEMON_LIMIT = "898";
         return pokemonMapper.createPokemonList(pokemonGatewayInterface.getAllPokemon(POKEMON_LIMIT));
     }
 }

@@ -29,12 +29,7 @@ public class PokemonResource {
     @GET
     @Path("{nameOrId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response idPokemon(@PathParam("nameOrId") String nameOrId) {
-        try{
-            return Response.status(Response.Status.OK).entity(pokemonGetOneCommand.execute(nameOrId)).build();
-        }
-        catch(Exception e){
-            return Response.status(Response.Status.NOT_FOUND).entity("POKEMON NOT FOUND").build();
-        }
+    public Response onePokemon(@PathParam("nameOrId") String nameOrId) {
+        return Response.status(Response.Status.OK).entity(pokemonGetOneCommand.execute(nameOrId)).build();
     }
 }

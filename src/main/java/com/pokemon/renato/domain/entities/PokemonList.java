@@ -5,6 +5,8 @@ public class PokemonList {
     private String name;
     private String image;
 
+    public PokemonList() {}
+
     public PokemonList(String id, String name, String image) {
         this.id = id;
         this.name = name;

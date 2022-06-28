@@ -6,5 +6,5 @@ import com.pokemon.renato.infrastructure.pokeapi.domain.PokemonResponse;
 public interface PokemonGatewayInterface {
     PokemonListResponse getAllPokemon(String limit);
 
-    PokemonResponse getSinglePokemon(String nameOrId);
+    PokemonResponse getOnePokemon(String nameOrId);
 }
