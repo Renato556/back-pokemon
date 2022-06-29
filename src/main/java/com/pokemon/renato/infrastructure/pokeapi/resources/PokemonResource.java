@@ -30,6 +30,11 @@ public class PokemonResource {
     @Path("{nameOrId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response onePokemon(@PathParam("nameOrId") String nameOrId) {
-        return Response.status(Response.Status.OK).entity(pokemonGetOneCommand.execute(nameOrId)).build();
+        try {
+            return Response.status(Response.Status.OK).entity(pokemonGetOneCommand.execute(nameOrId)).build();
+        }
+        catch(Exception exception) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

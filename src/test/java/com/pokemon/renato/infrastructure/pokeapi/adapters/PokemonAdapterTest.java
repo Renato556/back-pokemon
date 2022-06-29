@@ -35,6 +35,7 @@ class PokemonAdapterTest {
         class GetAllPokemonTest {
             PokemonListResponse pokemonListResponse;
             PokemonListResponse result;
+            String mockLimit = "limit";
 
             @BeforeEach
             public void mockAndAct() {
@@ -42,13 +43,13 @@ class PokemonAdapterTest {
 
                 doReturn(pokemonListResponse).when(pokemonGateway).getAllPokemon(anyString());
 
-                result = pokemonAdapter.getAllPokemon(anyString());
+                result = pokemonAdapter.getAllPokemon(mockLimit);
             }
 
             @Test
             @DisplayName("Then pokemonGateway.getAllPokemon is called")
             void gatewayGetAllPokemonTest() {
-                verify(pokemonGateway, times(1)).getAllPokemon(anyString());
+                verify(pokemonGateway, times(1)).getAllPokemon(mockLimit);
             }
 
             @Test
@@ -63,6 +64,7 @@ class PokemonAdapterTest {
         class GetOnePokemon {
             PokemonResponse pokemonResponse;
             PokemonResponse result;
+            String mockNameOrId = "nameOrId";
 
             @BeforeEach
             public void mockAndAct() {
@@ -70,13 +72,13 @@ class PokemonAdapterTest {
 
                 doReturn(pokemonResponse).when(pokemonGateway).getOnePokemon(anyString());
 
-                result = pokemonAdapter.getOnePokemon(anyString());
+                result = pokemonAdapter.getOnePokemon(mockNameOrId);
             }
 
             @Test
             @DisplayName("Then pokemonGateway.getOnePokemon is called")
             void gatewayGetOnePokemonTest() {
-                verify(pokemonGateway, times(1)).getOnePokemon(anyString());
+                verify(pokemonGateway, times(1)).getOnePokemon(mockNameOrId);
             }
 
             @Test

@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PokemonMapperTest {
@@ -31,75 +32,20 @@ class PokemonMapperTest {
     @DisplayName("Given PokemonMapper")
     class MapperTest {
         @Nested
-        @DisplayName("When formatData is called")
-        class FormatDataTest {
-            Float mockFloat;
-            Number mockNumber;
-            String mockName;
-            String mockExtension;
-
-            String resultStringData;
-            String resultFloatData;
-            String resultNumberData;
-
-            @BeforeEach
-            public void mockAndAct() {
-                mockFloat = 12.0F;
-                mockNumber = 7;
-                mockName = "urshifu-single-strike";
-                mockExtension = "kg";
-            }
-
-            @Test
-            @DisplayName("Then formatData is called with float")
-            void formatDataFloatTest() {
-                String expectedFloatData = "1.2 kg";
-                resultFloatData = pokemonMapper.formatData(mockFloat, mockExtension);
-                assertEquals(expectedFloatData, resultFloatData);
-            }
-
-            @Test
-            @DisplayName("Then formatData is called with number")
-            void formatDataNumberTest() {
-                String expectedNumberData = "7 kg";
-                resultNumberData = pokemonMapper.formatData(mockNumber, mockExtension);
-                assertEquals(expectedNumberData, resultNumberData);
-            }
-
-            @Test
-            @DisplayName("Then formatData is called with string")
-            void formatDataString() {
-                String expectedName = "urshifu single strike";
-                resultStringData = pokemonMapper.formatData(mockName);
-                assertEquals(expectedName, resultStringData);
-            }
-        }
-
-        @Nested
         @DisplayName("When createPokemonList is called")
         class CreatePokemonDataTest {
-            List<PokemonList> pokemonList;
-            PokemonListResponse pokemonListResponse;
+            List<PokemonList> expectedPokemonList;
+            PokemonListResponse pokemonListResponse = spy(PokemonListResponse.class);
             List<PokemonList> result;
 
             @BeforeEach
             public void mockAndAct() {
-                pokemonList = new ArrayList<>(
+                expectedPokemonList = new ArrayList<>(
                         Arrays.asList(
                                 new PokemonList(
                                         "1",
                                         "bulbasaur",
                                         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-                                ),
-                                new PokemonList(
-                                        "2",
-                                        "ivysaur",
-                                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
-                                ),
-                                new PokemonList(
-                                        "3",
-                                        "venasaur",
-                                        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
                                 ),
                                 new PokemonList(
                                         "892",
@@ -109,49 +55,45 @@ class PokemonMapperTest {
                         )
                 );
 
-                pokemonListResponse = new PokemonListResponse();
-
-                pokemonListResponse.setResults(
-                        Arrays.asList(
-                                new PokemonListResponse.PokemonData(
-                                        "bulbasaur",
-                                        "https://pokeapi.co/api/v2/pokemon/1/"
-                                ),
-                                new PokemonListResponse.PokemonData(
-                                        "ivysaur",
-                                        "https://pokeapi.co/api/v2/pokemon/2/"
-                                ),
-                                new PokemonListResponse.PokemonData(
-                                        "venasaur",
-                                        "https://pokeapi.co/api/v2/pokemon/3/"
-                                ),
-                                new PokemonListResponse.PokemonData(
-                                        "urshifu-single-strike",
-                                        "https://pokeapi.co/api/v2/pokemon/892/"
-                                )
+                List<PokemonListResponse.PokemonData> getResultsMock = Arrays.asList(
+                        new PokemonListResponse.PokemonData(
+                                "bulbasaur",
+                                "https://pokeapi.co/api/v2/pokemon/1/"
+                        ),
+                        new PokemonListResponse.PokemonData(
+                                "urshifu-single-strike",
+                                "https://pokeapi.co/api/v2/pokemon/892/"
                         )
                 );
+
+                doReturn(getResultsMock).when(pokemonListResponse).getResults();
 
                 result = pokemonMapper.createPokemonList(pokemonListResponse);
             }
 
             @Test
+            @DisplayName("Then pokemonListResponse.getResults is called")
+            void getResultsTest() {
+                verify(pokemonListResponse, times(1)).getResults();
+            }
+
+            @Test
             @DisplayName("Then return createPokemonList")
             void createPokemonListTest() {
-                assertTrue(EqualsBuilder.reflectionEquals(pokemonList, result));
+                assertTrue(EqualsBuilder.reflectionEquals(expectedPokemonList, result));
             }
         }
 
         @Nested
         @DisplayName("When createOnePokemon is called")
         class CreateOnePokemonTest {
-            Pokemon pokemon;
+            Pokemon expectedPokemon;
             PokemonResponse pokemonResponse;
             Pokemon result;
 
             @BeforeEach
             public void mockAndAct() {
-                pokemon = new Pokemon(
+                expectedPokemon = new Pokemon(
                         "urshifu single strike",
                         null,
                         "275 XP",
@@ -177,7 +119,7 @@ class PokemonMapperTest {
             @Test
             @DisplayName("Then return createOnePokemon")
             void createOnePokemonTest() {
-                assertTrue(EqualsBuilder.reflectionEquals(pokemon, result));
+                assertTrue(EqualsBuilder.reflectionEquals(expectedPokemon, result));
             }
         }
     }

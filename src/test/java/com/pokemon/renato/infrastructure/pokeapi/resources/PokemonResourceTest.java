@@ -18,7 +18,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PokemonResourceTest {
@@ -54,6 +54,12 @@ class PokemonResourceTest {
             }
 
             @Test
+            @DisplayName("Then execute is called")
+            void executeTest() {
+                verify(pokemonGetAllCommand, times(1)).execute();
+            }
+
+            @Test
             @DisplayName("Then return response entity")
             void allPokemonResultTest() {
                 assertEquals(pokemonList, response.getEntity());
@@ -69,28 +75,65 @@ class PokemonResourceTest {
         @Nested
         @DisplayName("When onePokemon is called")
         class OnePokemonTest {
-            Pokemon pokemon;
-            Response response;
+            String mockNameOrId = "nameOrId";
+            @Nested
+            @DisplayName("And execute returns successfully")
+            class andSuccessTest {
+                Pokemon pokemon;
+                Response response;
 
-            @BeforeEach
-            public void mockAndAct() {
-                pokemon = new Pokemon();
 
-                doReturn(pokemon).when(pokemonGetOneCommand).execute(anyString());
+                @BeforeEach
+                public void mockAndAct() {
+                    pokemon = new Pokemon();
 
-                response = pokemonResource.onePokemon(anyString());
+                    doReturn(pokemon).when(pokemonGetOneCommand).execute(anyString());
+
+                    response = pokemonResource.onePokemon(mockNameOrId);
+                }
+
+                @Test
+                @DisplayName("Then execute is called")
+                void executeTest() {
+                    verify(pokemonGetOneCommand, times(1)).execute(mockNameOrId);
+                }
+
+                @Test
+                @DisplayName("Then return pokemon")
+                void onePokemonResultTest() {
+                    assertEquals(pokemon, response.getEntity());
+                }
+
+                @Test
+                @DisplayName("Then response status is OK")
+                void onePokemonResponseTest() {
+                    assertEquals(Response.Status.OK, response.getStatusInfo());
+                }
             }
 
-            @Test
-            @DisplayName("Then return pokemon")
-            void onePokemonResultTest() {
-                assertEquals(pokemon, response.getEntity());
-            }
+            @Nested
+            @DisplayName("And execute throws exception")
+            class andExceptionTest {
+                Response response;
 
-            @Test
-            @DisplayName("Then response status is OK")
-            void onePokemonResponseTest() {
-                assertEquals(Response.Status.OK, response.getStatusInfo());
+                @BeforeEach
+                public void mockAndAct() {
+                    doThrow(new RuntimeException()).when(pokemonGetOneCommand).execute(anyString());
+
+                    response = pokemonResource.onePokemon(mockNameOrId);
+                }
+
+                @Test
+                @DisplayName("Then execute is called")
+                void executeTest() {
+                    verify(pokemonGetOneCommand, times(1)).execute(mockNameOrId);
+                }
+
+                @Test
+                @DisplayName("Then response status is INTERNAL_SERVER_ERROR")
+                void onePokemonResponseTest() {
+                    assertEquals(Response.Status.INTERNAL_SERVER_ERROR, response.getStatusInfo());
+                }
             }
         }
     }
