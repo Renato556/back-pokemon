@@ -18,7 +18,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PokemonAdapterTest {
     private PokemonAdapter pokemonAdapter;
-
     @Mock
     private PokemonGateway pokemonGateway;
 

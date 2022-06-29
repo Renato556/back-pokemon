@@ -23,10 +23,8 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PokemonResourceTest {
     private PokemonResource pokemonResource;
-
     @Mock
     private PokemonGetAllCommand pokemonGetAllCommand;
-
     @Mock
     private PokemonGetOneCommand pokemonGetOneCommand;
 
@@ -76,6 +74,7 @@ class PokemonResourceTest {
         @DisplayName("When onePokemon is called")
         class OnePokemonTest {
             String mockNameOrId = "nameOrId";
+
             @Nested
             @DisplayName("And execute returns successfully")
             class andSuccessTest {
