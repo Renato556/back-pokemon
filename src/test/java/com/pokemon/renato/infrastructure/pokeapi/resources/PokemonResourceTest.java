@@ -81,7 +81,6 @@ class PokemonResourceTest {
                 Pokemon pokemon;
                 Response response;
 
-
                 @BeforeEach
                 public void mockAndAct() {
                     pokemon = new Pokemon();

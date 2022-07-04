@@ -22,10 +22,8 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PokemonGetAllCommandTest {
     private PokemonGetAllCommand pokemonGetAllCommand;
-
     @Mock
     private PokemonGatewayInterface pokemonGatewayInterface;
-
     @Mock
     private PokemonMapper pokemonMapper;
 
