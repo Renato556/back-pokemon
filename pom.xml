@@ -70,6 +70,28 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.4.3</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>0.8</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <targetClasses>
+            <param>com.pokemon.renato.*</param>
+          </targetClasses>
+          <excludedClasses>
+            <param>com.pokemon.renato.domain.*</param>
+            <param>com.pokemon.renato.infrastructure.pokeapi.domain.*</param>
+            <param>com.pokemon.renato.infrastructure.pokeapi.gateways.*</param>
+          </excludedClasses>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
         <version>${quarkus.platform.version}</version>
